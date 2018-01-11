@@ -13,7 +13,7 @@ def add0(number):
 	else:
 		return number
 
-def create_message(event_place, event_owner):
+def create_message(event_place, event_owner, id_calendar):
 	initial_date = dates.get_uct_date(event_place['start']['dateTime'])
 	final_date = dates.get_uct_date(event_place['end']['dateTime'])
 
@@ -52,16 +52,18 @@ def create_message(event_place, event_owner):
 	ans += "Este evento utilizara la sala "
 	ans += "<b>"+place+"</b>"
 	ans += "<br><br>"
-	ans += "<form action ='www.google.cl' method='get'>"
-	ans += "Si desea eliminar el evento, pulse el siguiente boton: "
-	ans += '<input value="Borrar Evento" name="button" type="submit"/>'
+	ans += "<form action ='calendart.herokuapp.com/delete_event' method='get'>"
+	ans += "<input type='hidden' name='id_calendar' value='"+id_calendar+"'>"
+	ans += "<input type='hidden' name='id_event' value='"+event_place['id']+"'>"
+	ans += "Si no ocupara la sala por favor presione el siguiente boton para que otros la puedan ocupar:"
+	ans += '<input value="Liberar la sala" type="submit"/>'
 	ans += "</form><br>"
-	ans += "Para realizar cambios en el evento, ingrese al siguiete "
+	ans += "Para realizar otros cambios en el evento, ingrese al siguiente "
 	ans += "<b>  <a href="+link_owner+">link</a> </b>"
 	
 
 	ans += "<br><br><br>"
-	ans += "Muchas Gracias! PyT Techo "+random_face()
+	ans += "PyT Techo "+random_face()
 	return ans
 
 

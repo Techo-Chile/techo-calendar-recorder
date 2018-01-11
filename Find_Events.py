@@ -56,16 +56,3 @@ class Find_Events():
 		return self.service.events().delete(calendarId = calendar_id, eventId = event_id).execute()
 
 
-'''now = datetime.datetime.utcnow().isoformat() + 'Z'
-tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
-
-tomorrow = tomorrow.isoformat()+'Z'
-print(now)
-print(tomorrow)
-finder = Find_Events()
-finder.set_credentials()
-events = finder.get_events('techo.org_333634383939383839@resource.calendar.google.com',now,tomorrow)
-for event in events:
-	print(event)
-print(finder.get_event('cesar.desouza@techo.org','2k116bnk6g6iop8l0trmnpk3am'))
-'''
