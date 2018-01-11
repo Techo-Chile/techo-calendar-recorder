@@ -52,8 +52,13 @@ def create_message(event_place, event_owner):
 	ans += "Este evento utilizara la sala "
 	ans += "<b>"+place+"</b>"
 	ans += "<br><br>"
-	ans += "En caso de que este evento no se realizara o cambiara de lugar, se le pide ingresar al siguiente "
-	ans += "<b>  <a href="+link_owner+">link</a> </b> y realice los cambios oportunos"
+	ans += "<form action ='www.google.cl' method='get'>"
+	ans += "Si desea eliminar el evento, pulse el siguiente boton: "
+	ans += '<input value="Borrar Evento" name="button" type="submit"/>'
+	ans += "</form><br>"
+	ans += "Para realizar cambios en el evento, ingrese al siguiete "
+	ans += "<b>  <a href="+link_owner+">link</a> </b>"
+	
 
 	ans += "<br><br><br>"
 	ans += "Muchas Gracias! PyT Techo "+random_face()

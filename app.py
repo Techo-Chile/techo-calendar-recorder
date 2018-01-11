@@ -66,14 +66,15 @@ def main():
 
 					event_owner = finder.get_event(event_creator,event_id)
 					
-					if (event_creator == 'felipe.alamos@techo.org'):
-						finder.service.events().delete(calendarId='felipe.alamos@techo.org', eventId = event['id']).execute()
+					'''if (event_creator == 'felipe.alamos@techo.org'):
+						finder.service.events().delete(calendarId='felipe.alamos@techo.org', eventId = event['id']).execute()'''
 
 					message_text = Messages.create_message(event, event_owner)
 
 					message_b64 = sender.create_message('PyT Chile <pyt.chile@techo.org>','felipe.alamos@techo.org','Confirmar Sala Techo', message_text)
 
-					#sender.send_message('pyt.chile@techo.org',message_b64)
+					sender.send_message('pyt.chile@techo.org',message_b64)
+					return 0
 
 		print('-----------------------------------')
 	print('Eventos Privados: '+str(total_events))

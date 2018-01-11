@@ -52,6 +52,9 @@ class Find_Events():
 	def get_event(self, calendar_id, event_id):
 		return self.service.events().get(calendarId=calendar_id, eventId=event_id).execute()
 
+	def delete_event(self, calendar_id, event_id):
+		return self.service.events().delete(calendarId = calendar_id, eventId = event_id).execute()
+
 
 '''now = datetime.datetime.utcnow().isoformat() + 'Z'
 tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
