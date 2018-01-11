@@ -1,1 +1,1 @@
-web: python Web_Request.py 
+web: python Web_Request.py --noauth_local_webserver
