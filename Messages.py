@@ -5,30 +5,38 @@ def random_face():
 	faces = {0:"o.O", 1:":)", 2:":D", 3:":P", 4: "(:", 5: "\ (•◡•) /", 6:"ʕ•ᴥ•ʔ", 7:'(¬‿¬)',
 		8:'♥‿♥', 9:'( ͡ᵔ ͜ʖ ͡ᵔ )', 10:'◉_◉' }
 
-	return faces[int(random.randrange(0,6,1))]
+	return faces[int(random.randrange(0,11,1))]
+	#retorna una carita al azar
+
 
 def add0(number):
 	if number == '0':
 		return '00'
 	else:
 		return number
+	#metodo creado para cuando se castea 00 a string -> lo castea como 0
 
 def create_message(event_place, event_owner, id_calendar):
 	initial_date = dates.get_uct_date(event_place['start']['dateTime'])
 	final_date = dates.get_uct_date(event_place['end']['dateTime'])
+	#consigue la fecha inicial y final del evento y las transoforma en horario chileno
 
 	name_event = event_place['summary']
+	#nombre del evento
 
 	try:
 		name_creator = event_place['creator']['displayName']
 	except:
 		name_creator = ''
+	#consigue nombre del creador, en caso de que no posea nombre de gmail, lo deja en blanco
 
 	
 	mail_creator = event_place['creator']['email']
+	#mail del creador
 
 	link_place = event_place['htmlLink']
 	link_owner = event_owner['htmlLink']
+	#link del evento del recurso(lugar) y link del evento del creador
 
 
 	try:
@@ -39,6 +47,8 @@ def create_message(event_place, event_owner, id_calendar):
 		for value in event_place['attendees']:
 			if 'resource' in value:
 				place = value['displayName']
+	#busca el nombre del lugar, en caso de que no se encuentre en la informacion del evento
+	#lo busca en la lista de invitados (ya que ahi se encuentra siempre)
 
 	ans = "<h3>Hola "+name_creator+"</h3>"
 	ans += "Tiene un evento llamado "
@@ -58,6 +68,7 @@ def create_message(event_place, event_owner, id_calendar):
 	ans += "Si no ocupara la sala por favor presione el siguiente boton para que otros la puedan ocupar:"
 	ans += '<input value="Liberar la sala" type="submit"/>'
 	ans += "</form><br>"
+	#formulario para pedir que se borre evento
 	ans += "Para realizar otros cambios en el evento, ingrese al siguiente "
 	ans += "<b>  <a href="+link_owner+">link</a> </b>"
 	
