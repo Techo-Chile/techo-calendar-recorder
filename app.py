@@ -90,8 +90,8 @@ def main():
 					message_text = Messages.create_message(event, event_owner, calendars[value])
 					#se crea el mensaje del email
 
-					#message_b64 = sender.create_message('PyT Chile <pyt.chile@techo.org>',event_creator,'Confirmar Sala Techo', message_text)
-					message_b64 = sender.create_message('PyT Chile <pyt.chile@techo.org>','pyt.chile@techo.org','Confirmar Sala Techo', message_text)
+					message_b64 = sender.create_message('PyT Chile <pyt.chile@techo.org>',event_creator,'Confirmar Sala Techo', message_text)
+					#message_b64 = sender.create_message('PyT Chile <pyt.chile@techo.org>','pyt.chile@techo.org','Confirmar Sala Techo', message_text)
 					#se crea el email, emisor, receptor, asunto y el mensaje
 
 					sender.send_message('pyt.chile@techo.org',message_b64)
