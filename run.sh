@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 $PWD/app.py --noauth_local_webserver
+python $PWD/app.py --noauth_local_webserver
