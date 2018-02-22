@@ -68,9 +68,9 @@ Scheduler:
 		crontab -e
 
 	edite el archivo, donde los primeros 5 argumentos indican el horario:
-	minuto hora "día del mes" mes "dia de la semana"
+	minuto, hora, "día del mes", mes, "dia de la semana", separados por un espacio
 
-	por ejemplo, para ejecutarlo lunes a viernes, a las 5 de la tarse
+	por ejemplo, para ejecutarlo lunes a viernes, a las 5 de la tarde
 
 		0 17 * * 1-5 python /root/git/techo-calendar-recorder/app.py
 
