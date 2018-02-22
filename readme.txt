@@ -56,3 +56,28 @@ Web_Request:
 	el servidor donde esta alojado ir a la linea 65 de Messages y cambiar 
 	action del formulario
 
+
+
+Scheduler:
+	El programa utiliza crontab para hacer un daemon que lanza el programa a la hora
+	indicada del día indicado.
+
+	Para editar el archivo de crontab que contiene el schedule, en la terminal ejecute el
+	comando:
+
+		crontab -e
+
+	edite el archivo, donde los primeros 5 argumentos indican el horario:
+	minuto hora "día del mes" mes "dia de la semana"
+
+	por ejemplo, para ejecutarlo lunes a viernes, a las 5 de la tarse
+
+		0 17 * * 1-5 python /root/git/techo-calendar-recorder/app.py
+
+	OJO: se ocupa la hora de digital ocean, que está 3 horas adelantada, por lo tanto, el
+	comando sería:
+
+		0 20 * * 1-5 python /root/git/techo-calendar-recorder/app.py
+
+	Más información:
+		https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps
