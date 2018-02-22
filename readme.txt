@@ -57,6 +57,7 @@ Web_Request:
 	action del formulario
 
 
+información extra:
 
 Scheduler:
 	El programa utiliza crontab para hacer un daemon que lanza el programa a la hora
