@@ -21,7 +21,10 @@ def create_message(event_place, event_owner, id_calendar):
 	final_date = dates.get_uct_date(event_place['end']['dateTime'])
 	#consigue la fecha inicial y final del evento y las transoforma en horario chileno
 
-	name_event = event_place['summary']
+	try:
+		name_event = event_place['summary']
+	except KeyError:
+		name_event = 'Sin título'
 	#nombre del evento
 
 	try:
@@ -51,28 +54,29 @@ def create_message(event_place, event_owner, id_calendar):
 	#lo busca en la lista de invitados (ya que ahi se encuentra siempre)
 
 	ans = "<h3>Hola "+name_creator+"</h3>"
-	ans += "Tiene un evento llamado "
+	ans += "Tienes un evento llamado "
 	ans += "<b>"+name_event+"</b>"
-	ans += " agendado para el dia "
+	ans += " agendado para el día "
 	ans += "<b>"+str(initial_date.day)+" de "+dates.get_month(initial_date.month)+" </b>"
-	ans += "entre las horas "
+	ans += "entre las "
 	ans += "<b>"+str(initial_date.hour)+":"+add0(str(initial_date.minute))+"</b> y "
-	ans += "<b>"+str(final_date.hour)+":"+add0(str(final_date.minute))+"</b>"
+	ans += "<b>"+str(final_date.hour)+":"+add0(str(final_date.minute))+" horas.</b>"
 	ans += "<br><br>"
-	ans += "Este evento utilizara la sala "
-	ans += "<b>"+place+"</b>"
+	ans += "Este evento se llevará a cabo en "
+	ans += "<b>"+place+".</b>"
 	ans += "<br><br>"
-	ans += "<form action ='calendart.herokuapp.com/delete_event' method='get'>"
-	ans += "<input type='hidden' name='id_calendar' value='"+id_calendar+"'>"
-	ans += "<input type='hidden' name='id_event' value='"+event_place['id']+"'>"
-	ans += "Si no ocupara la sala por favor presione el siguiente boton para que otros la puedan ocupar:"
-	ans += '<input value="Liberar la sala" type="submit"/>'
-	ans += "</form><br>"
+	# ans += "<form action ='calendart.herokuapp.com/delete_event' method='get'>"
+	# ans += "<input type='hidden' name='id_calendar' value='"+mail_creator+"'>"
+	# ans += "<input type='hidden' name='id_event' value='"+event_place['id']+"'>"
+	# ans += "Si no ocupara la sala por favor presione el siguiente boton para que otros la puedan ocupar:"
+	# ans += '<input value="Liberar la sala" type="submit"/>'
+	# ans += "</form><br>"
 	#formulario para pedir que se borre evento
-	ans += "Para realizar otros cambios en el evento, ingrese al siguiente "
-	ans += "<b>  <a href="+link_owner+">link</a> </b>"
-	
-
+	ans += "Si el evento no va a ocurrir, o no vas a utilizar la sala, por favor libérala para que otros la puedan ocupar."
+	ans += "<br><br>"
+	ans += "Edita el evento en el siguiente <b><a href="+link_owner+">enlace</a>. </b>"
+	ans += "<br><br>"
+	ans += "De confirmar la sala, omita este correo."
 	ans += "<br><br><br>"
 	ans += "PyT Techo "+random_face()
 	return ans
